@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="fonts/css/font-awesome.css">
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,100,300,500">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Туристички локации во Македонија</title>
+    <style>
+        #map {
+            height: 100%;
+        }
+        .map_container{
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+        }
+        .map_container .map_canvas{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+    </style>
+</head>
+<body style="background-image: url('img/bg.png')">
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top" style="font-size: 18px; background: white;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html"><span class="glyphicon glyphicon-home" style="font-size:20px; color:black;"></span></a></li>
+                        <a class="navbar-brand" href="index.html" style="font-weight: bold; color:black;">&nbsp;Туристички места во Р. Македонија</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; font-weight: bold">Опции <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="dodadi.html" style="font-size: 16px; font-weight: bold">Додади локација</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header posebno" style="font-size: 16px;">Сите статии од кориcниците се разгледувани и треба да се одобрат пред да се објават.</li>
+                            </ul>
+                        <li><a href="mapaIndex.html" style="font-size: 16px; font-weight: bold">Поглед со мапа</a></li>
+                        <li><a href="albumIndex.html" style="font-size: 16px; font-weight: bold">Поглед со албум</a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default listing1" style="border-radius: 0px;">
+                    <div class="panel-heading" style="background-color: #c0392b; color:white;">
+                        <h4 class="panel-title" style="font-weight: bold;">Приказ на туристичките места во Р. Македонија</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            Доколку сакате да разгледате дополнителни инфомации за одредено место пронајдете го на мапата и кликнете на него.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="map_container">
+                        <div id="map" class="map_canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="footer" style="background-color: white;">
+    <div class="row">
+        <div class="span8" style="margin-top: 30px;">
+            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d47437.67257918356!2d21.4067521!3d42.0033973!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33d56647e5b87264!2sFaculty+of+Computer+Science+and+Engineering!5e0!3m2!1sen!2s!4v1461731416428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
+        <div class="span4 text-center">
+            <address>
+                <strong style="font-size:18px; color:black;"><b>АДРЕСА</b></strong><br>
+                ул. Руѓер Бошковиќ 16, Пoштенски Фах 393,<br>
+                1000, Скопје, Р. Македонија<br>
+            </address>
+            <email>
+                <strong style="font-size:18px; color:black;"><b>КОНТАКТ</b></strong><br>
+                madzhirova.angela@students.finki.ukim.mk<br>
+                donev.stefan@students.finki.ukim.mk
+            </email>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    var map;
+    function initMap() {
+
+        var myLatLng1 = {lat: 41.12310, lng: 20.80165};
+        var myLatLng2 = {lat: 40.88332, lng: 21.02220};
+        var myLatLng3 = {lat: 41.22175, lng: 22.75097};
+        var myLatLng4 = {lat: 41.65494, lng: 20.73385};
+        var myLatLng5 = {lat: 41.02968, lng: 21.32922};
+        var myLatLng6 = {lat: 40.96083, lng: 21.20472};
+        var myLatLng7 = {lat: 41.581481, lng: 21.936205};
+        var myLatLng8 = {lat: 41.17784, lng: 20.67833};
+        var myLatLng9 = {lat: 40.96417, lng: 20.83342};
+        var myLatLng10 = {lat: 41.37056, lng: 21.25022};
+        var myLatLng11 = {lat: 42.08004	, lng: 22.18028};
+        var myLatLng12 = {lat: 41.24075, lng: 20.59156};
+        var myLatLng13 = {lat: 41.59453, lng: 20.65116};
+        var myLatLng14 = {lat: 41.950458, lng: 21.299368};
+        var myLatLng15 = {lat: 41.99735, lng: 21.42800};
+        var myLatLng16 = {lat: 41.43780, lng: 22.64274};
+        var myLatLng17 = {lat: 41.365627, lng: 22.899913};
+        var myLatLng18 = {lat: 41.43294, lng: 22.00889};
+        var myLatLng19 = {lat: 41.71646, lng: 21.77230};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 41.60863	, lng: 	21.74527},
+            zoom: 8
+        });
+
+        var marker1 = new google.maps.Marker({
+            position: myLatLng1,
+            map: map,
+            title: 'Охрид',
+            url: "lokacii/ohrid.html"
+        });
+
+        google.maps.event.addListener(marker1, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString1 = '<div id="content">'+
+                '<h4>Охрид</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Ohrid/Ohrid.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow1 = new google.maps.InfoWindow({
+            content: contentString1
+        });
+        marker1.addListener('mouseover', function() {
+            infowindow1.open(map, marker1);
+
+            marker1.addListener('mouseout', function() {
+                infowindow1.close();})
+        });
+
+        var marker2 = new google.maps.Marker({
+            position: myLatLng2,
+            map: map,
+            title: 'Преспа',
+            url: "lokacii/prespa.html"
+        });
+
+        google.maps.event.addListener(marker2, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString2 = '<div id="content">'+
+                '<h4>Преспа</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Prespa/Prespa.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow2 = new google.maps.InfoWindow({
+            content: contentString2
+        });
+        marker2.addListener('mouseover', function() {
+            infowindow2.open(map, marker2);
+
+            marker2.addListener('mouseout', function() {
+                infowindow2.close();})
+        });
+
+
+        var marker3 = new google.maps.Marker({
+            position: myLatLng3,
+            map: map,
+            title: 'Дојран',
+            url: "lokacii/dojran.html"
+        });
+
+        google.maps.event.addListener(marker3, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString3 = '<div id="content">'+
+                '<h4>Дојран</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Dojran/Dojran.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow3 = new google.maps.InfoWindow({
+            content: contentString3
+        });
+        marker3.addListener('mouseover', function() {
+            infowindow3.open(map, marker3);
+
+            marker3.addListener('mouseout', function() {
+                infowindow3.close();})
+        });
+
+        var marker4 = new google.maps.Marker({
+            position: myLatLng4,
+            map: map,
+            title: 'Маврово',
+            url: "lokacii/mavrovo.html"
+        });
+
+        google.maps.event.addListener(marker4, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString4 = '<div id="content">'+
+                '<h4>Маврово</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Mavrovo/Mavrovo.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow4 = new google.maps.InfoWindow({
+            content: contentString4
+        });
+        marker4.addListener('mouseover', function() {
+            infowindow4.open(map, marker4);
+
+            marker4.addListener('mouseout', function() {
+                infowindow4.close();})
+        });
+
+        var marker5 = new google.maps.Marker({
+            position: myLatLng5,
+            map: map,
+            title: 'Битола',
+            url: "lokacii/bitola.html"
+        });
+
+        google.maps.event.addListener(marker5, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString5 = '<div id="content">'+
+                '<h4>Битола</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Bitola/Bitola.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow5 = new google.maps.InfoWindow({
+            content: contentString5
+        });
+        marker5.addListener('mouseover', function() {
+            infowindow5.open(map, marker5);
+
+            marker5.addListener('mouseout', function() {
+                infowindow5.close();})
+        });
+
+        var marker6 = new google.maps.Marker({
+            position: myLatLng6,
+            map: map,
+            title: 'Пелистер',
+            url: "lokacii/pelister.html"
+        });
+
+        google.maps.event.addListener(marker6, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString6 = '<div id="content">'+
+                '<h4>Пелистер</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Pelister/Pelister.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow6 = new google.maps.InfoWindow({
+            content: contentString6
+        });
+        marker6.addListener('mouseover', function() {
+            infowindow6.open(map, marker6);
+
+            marker6.addListener('mouseout', function() {
+                infowindow6.close();})
+        });
+
+        var marker7 = new google.maps.Marker({
+            position: myLatLng7,
+            map: map,
+            title: 'Стоби',
+            url: "lokacii/stobi.html"
+        });
+
+        google.maps.event.addListener(marker7, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString7 = '<div id="content">'+
+                '<h4>Стоби</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Stobi/Stobi.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow7 = new google.maps.InfoWindow({
+            content: contentString7
+        });
+        marker7.addListener('mouseover', function() {
+            infowindow7.open(map, marker7);
+
+            marker7.addListener('mouseout', function() {
+                infowindow7.close();})
+        });
+
+        var marker8 = new google.maps.Marker({
+            position: myLatLng8,
+            map: map,
+            title: 'Струга',
+            url: "lokacii/struga.html"
+        });
+
+        google.maps.event.addListener(marker8, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString8 = '<div id="content">'+
+                '<h4>Струга</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Struga/Struga.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow8 = new google.maps.InfoWindow({
+            content: contentString8
+        });
+        marker8.addListener('mouseover', function() {
+            infowindow8.open(map, marker8);
+
+            marker8.addListener('mouseout', function() {
+                infowindow8.close();})
+        });
+
+        var marker9 = new google.maps.Marker({
+            position: myLatLng9,
+            map: map,
+            title: 'Галичица',
+            url: "lokacii/galicica.html"
+        });
+
+        google.maps.event.addListener(marker9, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString9 = '<div id="content">'+
+                '<h4>Галичица</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Galicica/Galicica.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow9 = new google.maps.InfoWindow({
+            content: contentString9
+        });
+        marker9.addListener('mouseover', function() {
+            infowindow9.open(map, marker9);
+
+            marker9.addListener('mouseout', function() {
+                infowindow9.close();})
+        });
+
+        var marker10 = new google.maps.Marker({
+            position: myLatLng10,
+            map: map,
+            title: 'Крушево',
+            url: "lokacii/krusevo.html"
+        });
+
+        google.maps.event.addListener(marker10, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString10 = '<div id="content">'+
+                '<h4>Крушево</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Krusevo/Krusevo.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow10 = new google.maps.InfoWindow({
+            content: contentString10
+        });
+        marker10.addListener('mouseover', function() {
+            infowindow10.open(map, marker10);
+
+            marker10.addListener('mouseout', function() {
+                infowindow10.close();})
+        });
+
+        var marker11 = new google.maps.Marker({
+            position: myLatLng11,
+            map: map,
+            title: 'Кратово',
+            url: "lokacii/kratovo.html"
+        });
+
+        google.maps.event.addListener(marker11, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString11 = '<div id="content">'+
+                '<h4>Кратово</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Kratovo/kratovo1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow11 = new google.maps.InfoWindow({
+            content: contentString11
+        });
+        marker11.addListener('mouseover', function() {
+            infowindow11.open(map, marker11);
+
+            marker11.addListener('mouseout', function() {
+                infowindow11.close();})
+        });
+
+        var marker12 = new google.maps.Marker({
+            position: myLatLng12,
+            map: map,
+            title: 'Вевчани',
+            url: "lokacii/vevcani.html"
+        });
+
+        google.maps.event.addListener(marker12, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString12 = '<div id="content">'+
+                '<h4>Вевчани</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Vevcani/vevcani1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow12 = new google.maps.InfoWindow({
+            content: contentString12
+        });
+        marker12.addListener('mouseover', function() {
+            infowindow12.open(map, marker12);
+
+            marker12.addListener('mouseout', function() {
+                infowindow12.close();})
+        });
+        var marker13 = new google.maps.Marker({
+            position: myLatLng13,
+            map: map,
+            title: 'Галичник',
+            url: "lokacii/galicnik.html"
+        });
+
+        google.maps.event.addListener(marker13, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString13 = '<div id="content">'+
+                '<h4>Галичник</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Galicnik/galicnik1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow13 = new google.maps.InfoWindow({
+            content: contentString13
+        });
+        marker13.addListener('mouseover', function() {
+            infowindow13.open(map, marker13);
+
+            marker13.addListener('mouseout', function() {
+                infowindow13.close();})
+        });
+
+        var marker14 = new google.maps.Marker({
+            position: myLatLng14,
+            map: map,
+            title: 'Матка',
+            url: "lokacii/matka.html"
+        });
+
+        google.maps.event.addListener(marker14, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString14 = '<div id="content">'+
+                '<h4>Матка</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Matka/matka1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow14 = new google.maps.InfoWindow({
+            content: contentString14
+        });
+        marker14.addListener('mouseover', function() {
+            infowindow14.open(map, marker14);
+
+            marker14.addListener('mouseout', function() {
+                infowindow14.close();})
+        });
+
+        var marker15 = new google.maps.Marker({
+            position: myLatLng15,
+            map: map,
+            title: 'Скопје',
+            url: "lokacii/skopje.html"
+        });
+
+        google.maps.event.addListener(marker15, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString15 = '<div id="content">'+
+                '<h4>Скопје</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Skopje/skopje1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow15 = new google.maps.InfoWindow({
+            content: contentString15
+        });
+        marker15.addListener('mouseover', function() {
+            infowindow15.open(map, marker15);
+
+            marker15.addListener('mouseout', function() {
+                infowindow15.close();})
+        });
+
+        var marker16 = new google.maps.Marker({
+            position: myLatLng16,
+            map: map,
+            title: 'Струмица',
+            url: "lokacii/strumica.html"
+        });
+
+        google.maps.event.addListener(marker11, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString16 = '<div id="content">'+
+                '<h4>Струмица</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Strumica/strumica1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow16 = new google.maps.InfoWindow({
+            content: contentString16
+        });
+        marker16.addListener('mouseover', function() {
+            infowindow16.open(map, marker16);
+
+            marker16.addListener('mouseout', function() {
+                infowindow16.close();})
+        });
+
+        var marker17 = new google.maps.Marker({
+            position: myLatLng17,
+            map: map,
+            title: 'Смоларски водопад',
+            url: "lokacii/smolarski_vodopad.html"
+        });
+
+        google.maps.event.addListener(marker17, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString17 = '<div id="content">'+
+                '<h4>Смоларски водопад</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Smolarski_vodopad/sm1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow17 = new google.maps.InfoWindow({
+            content: contentString17
+        });
+        marker17.addListener('mouseover', function() {
+            infowindow17.open(map, marker17);
+
+            marker17.addListener('mouseout', function() {
+                infowindow17.close();})
+        });
+
+        var marker18 = new google.maps.Marker({
+            position: myLatLng18,
+            map: map,
+            title: 'Кавадарци',
+            url: "lokacii/kavadarci.html"
+        });
+
+        google.maps.event.addListener(marker18, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString18 = '<div id="content">'+
+                '<h4>Кавадарци</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Kavadarci/kavadarci1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow18 = new google.maps.InfoWindow({
+            content: contentString18
+        });
+        marker18.addListener('mouseover', function() {
+            infowindow18.open(map, marker18);
+
+            marker18.addListener('mouseout', function() {
+                infowindow18.close();})
+        });
+
+        var marker19 = new google.maps.Marker({
+            position: myLatLng19,
+            map: map,
+            title: 'Велес',
+            url: "lokacii/veles.html"
+        });
+
+        google.maps.event.addListener(marker19, 'click', function() {
+            window.location.href = this.url;
+        });
+
+        var contentString19 = '<div id="content">'+
+                '<h4>Велес</h4>'+
+                '<div id="bodyContent">'+
+                '<img src="img/Veles/veles1.jpg" style="height: 100px; width: 200px;">'+
+                '</div>'+
+                '</div>';
+
+        var infowindow19 = new google.maps.InfoWindow({
+            content: contentString19
+        });
+        marker19.addListener('mouseover', function() {
+            infowindow19.open(map, marker19);
+
+            marker19.addListener('mouseout', function() {
+                infowindow19.close();})
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiqHFp5m48giuA_BV0RfzCWp4NZsDzIIs&callback=initMap"
+        async defer></script>
+</body>
+</html>

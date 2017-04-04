@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="fonts/css/font-awesome.css">
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,100,300,500">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Додади локација</title>
+</head>
+<body style="background-image: url('img/bg.png')">
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top" style="font-size: 18px; background: white;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html"><span class="glyphicon glyphicon-home" style="font-size:20px; color:black;"></span></a></li>
+                        <a class="navbar-brand" href="index.html" style="font-weight: bold; color:black;">&nbsp;Туристички места во Р. Македонија</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; font-weight: bold">Опции <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="dodadi.html" style="font-size: 16px; font-weight: bold">Додади локација</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header posebno" style="font-size: 16px;">Сите статии од кориcниците се разгледувани и треба да се одобрат пред да се објават.</li>
+                            </ul>
+                        <li><a href="mapaIndex.html" style="font-size: 16px; font-weight: bold">Поглед со мапа</a></li>
+                        <li><a href="albumIndex.html" style="font-size: 16px; font-weight: bold">Поглед со албум</a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+    <div class="container" style="margin-top: 45px;">
+        <div class="row">
+            <div class="container"  style="margin-top: 50px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Според следнава шема можете да добиете приказ како би ви биле распоредени визуелните и текстуални податоци кои би ги поставиле со цел да додадете нова локација.</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Доколку пак сакате да извршите промена на содржината на некоја од веќе постоечките локации кликнете на Промени содржина.</h4>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-6">
+                        <div class="panel panel-default listing1">
+                            <div class="panel-heading" style="background-color: #c0392b; border-radius: 0px;">
+                                <h4 style="color:white;">Запиши име на локацијата</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="http://placehold.it/500x250" class="img-responsive btn-block">
+                                    </div>
+                                    <div class="col-md-6">
+                    <textarea rows="6" cols="50" readonly class="btn-block">
+                        Запишете информации за локацијата...
+                    </textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Поставете слики со кратки информации за нив кои корисникот ќе може дополнително да ги гледа.</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="img/carouselSema.png" class="img-responsive btn-block">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <h2 align="center">Внес на податоци</h2><br><br>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Име:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ime" placeholder="Име на локацијата...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Главна слика:</label>
+                                <div class="col-sm-10">
+                                    <input type="file">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Опис:</label>
+                                <div class="col-sm-10">
+                                    <textarea rows="5" class="form-control" id="opis" placeholder="Опис на локацијата..."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Галерија:</label>
+                                <div class="col-sm-10">
+                                    <input type="file" multiple>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default btn-lg pull-right" onclick="myFunction()" style="border-radius: 0px;">Испрати</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Доколку сакате да едитирате содржина на одредена страна клинете тука:</h4> <div class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" style="border-radius: 0px;">Промени содржина</div>
+                    </div>
+            </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #c0392b; border-radius: 0px;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel" style="color:white;">Промена на содржина</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-md-12" style="margin-top: -6px;">
+                                    <p>Изберете место:</p>
+                                </div>
+                                <div class="col-md-12" style="margin-top: -10px;">
+                                    <select>
+                                        <option value="ohrid">Охрид</option>
+                                        <option value="prespa">Преспа</option>
+                                        <option value="dojran">Дојран</option>
+                                        <option value="mavrovo">Маврово</option>
+                                        <option value="bitola">Битола</option>
+                                        <option value="pelister">Пелистер</option>
+                                        <option value="stobi">Стоби</option>
+                                        <option value="struga">Струга</option>
+                                        <option value="galicica">Галичица</option>
+                                        <option value="krusevo">Крушево</option>
+                                        <option value="kratovo">Кратово</option>
+                                        <option value="vevcani">Вевчани</option>
+                                        <option value="galicnik">Галичник</option>
+                                        <option value="matka">Матка</option>
+                                        <option value="skopje">Скопје</option>
+                                        <option value="strumica">Струмица</option>
+                                        <option value="sm">Смоларски водопад</option>
+                                        <option value="kavadarci">Кавадарци</option>
+                                        <option value="veles">Велес</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 5px;">
+                                    <textarea rows="5" class="form-control" id="opis1" placeholder="Доколку имате замерки во врска со одреден дел од содржината на статијата или сакате да додадете нова содржина изразете го мислењето тука..."></textarea>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 10px;">
+                                    <p>Препорачајте нова главна слика:</p><input type="file" style="margin-top: -10px;">
+                                </div>
+                                <br>
+                                <div class="col-md-12" style="margin-top: 15px;">
+                                    <p>Поставете нови дополнителни слики за локацијата:<input type="file" multiple>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="border-radius: 0px; margin-top: 10px;">Затвори</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" style="border-radius: 0px; margin-top: 10px;" onclick="myFunction1()">Испрати</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="footer" style="background-color: white;">
+    <div class="row">
+        <div class="span8" style="margin-top: 30px;">
+            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d47437.67257918356!2d21.4067521!3d42.0033973!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33d56647e5b87264!2sFaculty+of+Computer+Science+and+Engineering!5e0!3m2!1sen!2s!4v1461731416428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
+        <div class="span4 text-center">
+            <address>
+                <strong style="font-size:18px; color:black;"><b>АДРЕСА</b></strong><br>
+                ул. Руѓер Бошковиќ 16, Пoштенски Фах 393,<br>
+                1000, Скопје, Р. Македонија<br>
+            </address>
+            <email>
+                <strong style="font-size:18px; color:black;"><b>КОНТАКТ</b></strong><br>
+                madzhirova.angela@students.finki.ukim.mk<br>
+                donev.stefan@students.finki.ukim.mk
+            </email>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    function myFunction() {
+        alert("Вашите податоци се испратени и локацијата ќе биде додадена по контрола од страна на администратор.");
+    }
+    function myFunction1() {
+        alert("Вашите податоци се испратени и податоците ќе бидат разгледани и поставени од страна на администратор.");
+    }
+</script>
+</body>
+</html>
