@@ -1,0 +1,200 @@
+.golemina{
+    height: 180px;
+}
+body{
+    padding-top:20px;
+}
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+/* The controlsy */
+.carousel-control {
+    left: -12px;
+    height: 40px;
+    width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 160px;
+}
+
+.lok {
+    margin-top: 75px; !important;
+}
+.carousel-control.right {
+    right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: -10px;
+    margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+    background: #cecece;
+}
+.carousel-indicators .active {
+    background: #222222;
+}
+
+/* The website css design style*/
+
+.listing {
+    background: #fff;
+    border: 0px solid #ddd;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    border-radius: 0px;
+}
+
+.listing1 {
+    background: #fff;
+    border: 0px solid #ddd;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    border-radius: 0px;
+}
+
+.listing-content:hover{
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+
+.listing:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: rotate scale(1.1);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+
+button {
+    background-image: linear-gradient(#FC6E51, #E9573F);
+    background-size: auto 200%;
+    background-position: 0 100%;
+    transition: background-position 0.5s;
+}
+button:hover {
+    background-position: 0 0;
+}
+
+h4{
+    color: black;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+figure.snip0055 {
+    font-family: 'Raleway', Arial, sans-serif;
+    position: relative;
+    float: left;
+    margin: 10px 1%;
+    min-width: 220px;
+    max-width: 310px;
+    max-height: 220px;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+    background: #000000;
+    -webkit-perspective: 50em;
+    perspective: 50em;
+}
+figure.snip0055 * {
+    -webkit-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+figure.snip0055 img {
+    opacity: 0.3;
+    max-width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+figure.snip0055 figcaption {
+    position: absolute;
+    top: 30px;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background: #000000;
+}
+figure.snip0055 figcaption h3 {
+    font-size: 1.4em;
+    top: 50%;
+    letter-spacing: -1px;
+    position: absolute;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 0 20px;
+    margin: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+figure.snip0055.blue {
+    background: #091b27;
+}
+figure.snip0055.blue figcaption {
+    background: #2980b9;
+}
+figure.snip0055.red {
+    background: #2e0e0a;
+}
+figure.snip0055.red figcaption {
+    background: #c0392b;
+}
+figure.snip0055.yellow {
+    background: #4d2909;
+}
+figure.snip0055.yellow figcaption {
+    background: #e67e22;
+}
+figure.snip0055.green {
+    background: #061c10;
+}
+figure.snip0055.green figcaption {
+    background: #27ae60;
+}
+figure.snip0055 a {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+}
+figure.snip0055:hover img,
+figure.snip0055.hover img {
+    opacity: 1;
+}
+figure.snip0055:hover figcaption,
+figure.snip0055.hover figcaption {
+    opacity: 0;
+    -webkit-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+}
+
+li:hover, li a:hover, .dropdown-menu li a:hover{
+    background-color: #c0392b;
+    color: white!important;
+}
+
+.posebno:hover{
+    background-color: white;
+    color: dimgray!important;
+}
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
